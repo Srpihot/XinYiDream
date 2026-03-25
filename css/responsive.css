@@ -1,0 +1,564 @@
+/* 设备适配与响应式样式 */
+
+/* 基础移动端优化 */
+@media screen and (max-width: 380px) {
+  :root {
+    --xym-gua-size: 170px;
+  }
+
+  .app-name {
+    font-size: 2rem;
+  }
+
+  .gua-card {
+    padding: 20px;
+  }
+
+  .gua-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .yao {
+    height: 6px;
+  }
+
+  .gua-visual {
+    gap: 8px;
+  }
+
+  /* gua-carousel 小屏适配 */
+  .gua-carousel {
+    padding: 8px 0;
+    --carousel-card-width: 220px !important;
+    --carousel-card-gap: 10px !important;
+  }
+
+  .gua-carousel-track {
+    gap: var(--carousel-card-gap);
+  }
+
+  .gua-card-slide {
+    flex: 0 0 var(--carousel-card-width);
+    width: var(--carousel-card-width);
+    padding: 18px 15px;
+  }
+
+  .gua-card-slide .gua-title h2 {
+    font-size: 1.4rem;
+  }
+
+  .gua-card-slide .gua-visual {
+    margin: 15px 0;
+    gap: 6px;
+  }
+
+  .gua-card-slide .yao {
+    height: 5px;
+    width: 60px;
+  }
+
+  .gua-card-slide .yao.yin::before,
+  .gua-card-slide .yao.yin::after {
+    height: 5px;
+  }
+
+  .gua-type-label {
+    font-size: 0.65rem;
+    margin-bottom: 10px;
+  }
+
+  .gua-carousel-dots {
+    margin-top: 12px;
+  }
+}
+
+/* iPhone 15 / 16 / 17 系列 - 灵动岛适配 */
+@media screen and (device-width: 393px) and (device-height: 852px),
+       screen and (device-width: 430px) and (device-height: 932px) {
+  :root {
+    --xym-safe-top: 59px;
+    --xym-safe-bottom: 34px;
+  }
+
+  .app-header {
+    padding-top: 8px;
+  }
+}
+
+/* iPhone 15 Pro Max / 16 Pro Max / 17 Pro Max */
+@media screen and (device-width: 430px) and (device-height: 932px) {
+  :root {
+    --xym-safe-top: 59px;
+  }
+}
+
+/* 折叠屏 - 展开状态 */
+@media screen and (min-width: 700px) and (max-height: 900px) {
+  #main-content {
+    flex-direction: row;
+  }
+
+  .app-header {
+    width: 80px;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: calc(var(--xym-safe-top) + 20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .time-display {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.2em;
+  }
+
+  .lunar-display {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+
+  .divination-area {
+    flex: 1;
+  }
+
+  .gua-display {
+    max-width: 100%;
+  }
+
+  .number-inputs {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* gua-carousel 折叠屏展开适配 */
+  .gua-carousel {
+    max-width: 100%;
+    margin: 0 auto;
+    --carousel-card-width: 300px !important;
+    --carousel-card-gap: 20px !important;
+  }
+
+  .gua-carousel-track {
+    gap: var(--carousel-card-gap);
+  }
+
+  .gua-card-slide {
+    flex: 0 0 var(--carousel-card-width);
+    width: var(--carousel-card-width);
+    padding: 30px 25px;
+  }
+
+  .gua-card-slide .gua-title h2 {
+    font-size: 2rem;
+  }
+
+  .gua-card-slide .gua-visual {
+    margin: 30px 0;
+    gap: 12px;
+  }
+
+  .gua-card-slide .yao {
+    height: 8px;
+    width: 100px;
+  }
+
+  .gua-card-slide .yao.yin::before,
+  .gua-card-slide .yao.yin::after {
+    height: 8px;
+  }
+}
+
+/* 折叠屏 - 小屏外屏 */
+@media screen and (max-width: 400px) and (max-height: 900px) {
+  .taiji-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .gua-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* gua-carousel 折叠屏外屏适配 */
+  .gua-carousel {
+    padding: 8px 0;
+    --carousel-card-width: 200px !important;
+    --carousel-card-gap: 8px !important;
+  }
+
+  .gua-carousel-track {
+    gap: var(--carousel-card-gap);
+  }
+
+  .gua-card-slide {
+    flex: 0 0 var(--carousel-card-width);
+    width: var(--carousel-card-width);
+    padding: 15px 12px;
+  }
+
+  .gua-card-slide .gua-title h2 {
+    font-size: 1.3rem;
+  }
+
+  .gua-card-slide .gua-visual {
+    margin: 12px 0;
+    gap: 5px;
+  }
+
+  .gua-card-slide .yao {
+    height: 4px;
+    width: 55px;
+  }
+
+  .gua-card-slide .yao.yin::before,
+  .gua-card-slide .yao.yin::after {
+    height: 4px;
+  }
+
+  .gua-type-label {
+    font-size: 0.6rem;
+    margin-bottom: 8px;
+  }
+
+  .gua-wuxing-info {
+    margin-top: 8px;
+    padding: 6px 10px;
+    font-size: 0.7rem;
+  }
+}
+
+/* 短屏设备适配 (高度小于700px) */
+@media screen and (max-height: 700px) {
+  .gua-carousel {
+    padding: 6px 0;
+    border-radius: 16px;
+    --carousel-card-width: 240px !important;
+    --carousel-card-gap: 10px !important;
+  }
+
+  .gua-carousel-track {
+    gap: var(--carousel-card-gap);
+  }
+
+  .gua-card-slide {
+    flex: 0 0 var(--carousel-card-width);
+    width: var(--carousel-card-width);
+    padding: 20px 15px;
+    border-radius: 16px;
+  }
+
+  .gua-card-slide .gua-title h2 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+
+  .gua-card-slide .gua-visual {
+    margin: 15px 0;
+    gap: 8px;
+  }
+
+  .gua-card-slide .yao {
+    height: 5px;
+    width: 70px;
+  }
+
+  .gua-card-slide .yao.yin::before,
+  .gua-card-slide .yao.yin::after {
+    height: 5px;
+  }
+
+  .gua-type-label {
+    font-size: 0.65rem;
+    margin-bottom: 8px;
+  }
+
+  .gua-wuxing-info {
+    margin-top: 8px;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+
+  .gua-carousel-dots {
+    margin-top: 12px;
+  }
+}
+
+/* 横屏模式 */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .splash-screen {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .taiji-container {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0;
+  }
+
+  .app-name {
+    font-size: 1.8rem;
+    letter-spacing: 0.3em;
+  }
+
+  #main-content {
+    flex-direction: row;
+  }
+
+  .app-header {
+    width: auto;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .divination-area {
+    flex: 1;
+  }
+
+  .gua-card {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .gua-visual {
+    margin: 0;
+  }
+
+  .number-panel {
+    max-width: 500px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(0);
+    border-radius: 25px;
+    margin-bottom: 20px;
+  }
+
+  .number-panel.hidden {
+    transform: translateX(-50%) translateY(120%);
+  }
+
+  /* gua-carousel 横屏适配 */
+  .gua-carousel {
+    padding: 6px 0;
+    --carousel-card-width: 280px !important;
+    --carousel-card-gap: 12px !important;
+  }
+
+  .gua-carousel-track {
+    gap: var(--carousel-card-gap);
+  }
+
+  .gua-card-slide {
+    flex: 0 0 var(--carousel-card-width);
+    width: var(--carousel-card-width);
+    padding: 15px 20px;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gua-card-slide .gua-title {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .gua-card-slide .gua-title h2 {
+    font-size: 1.3rem;
+  }
+
+  .gua-card-slide .gua-visual {
+    margin: 0;
+    gap: 4px;
+  }
+
+  .gua-card-slide .yao {
+    height: 4px;
+    width: 50px;
+  }
+
+  .gua-card-slide .yao.yin::before,
+  .gua-card-slide .yao.yin::after {
+    height: 4px;
+  }
+
+  .gua-type-label {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 0.6rem;
+    margin: 0;
+  }
+
+  .gua-wuxing-info {
+    display: none;
+  }
+
+  .gua-carousel-dots {
+    margin-top: 8px;
+  }
+}
+
+/* 大屏幕平板 */
+@media screen and (min-width: 768px) {
+  :root {
+    --xym-gua-size: 280px;
+  }
+
+  .gua-display {
+    max-width: 100%;
+  }
+
+  .gua-card {
+    padding: 40px;
+  }
+
+  .gua-title h2 {
+    font-size: 2.2rem;
+  }
+
+  .yao {
+    height: 10px;
+    border-radius: 5px;
+  }
+
+  .yao.yin::before,
+  .yao.yin::after {
+    border-radius: 5px;
+  }
+
+  /* gua-carousel 大屏适配 */
+  .gua-carousel {
+    max-width: 100%;
+    margin: 0 auto;
+    --carousel-card-width: 360px !important;
+    --carousel-card-gap: 25px !important;
+  }
+
+  .gua-carousel-track {
+    gap: var(--carousel-card-gap);
+  }
+
+  .gua-card-slide {
+    flex: 0 0 var(--carousel-card-width);
+    width: var(--carousel-card-width);
+    padding: 35px 30px;
+  }
+
+  .gua-card-slide .gua-title h2 {
+    font-size: 2.2rem;
+  }
+
+  .gua-card-slide .gua-visual {
+    margin: 35px 0;
+    gap: 14px;
+  }
+
+  .gua-card-slide .yao {
+    height: 9px;
+    width: 120px;
+  }
+
+  .gua-card-slide .yao.yin::before,
+  .gua-card-slide .yao.yin::after {
+    height: 9px;
+  }
+
+  .gua-type-label {
+    font-size: 0.8rem;
+    margin-bottom: 18px;
+  }
+}
+
+/* 暗色模式优化（已默认暗色） */
+@media (prefers-color-scheme: light) {
+  /* 保持暗色主题，不受系统影响 */
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .taiji {
+    animation: none;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  :root {
+    --xym-gold: #ffd700;
+    --xym-white: #ffffff;
+    --xym-light-gray: #aaaaaa;
+  }
+
+  .yao.yin {
+    border: 1px solid var(--xym-white);
+  }
+}
+
+/* 触摸设备优化 */
+@media (pointer: coarse) {
+  .confirm-btn,
+  .back-btn,
+  .save-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .input-group input {
+    font-size: 16px; /* 防止iOS缩放 */
+  }
+
+  .yao-row {
+    padding: 5px 0;
+  }
+}
+
+/* 鼠标悬停效果（非触摸设备） */
+@media (pointer: fine) {
+  .confirm-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .gua-list-item:hover {
+    background: rgba(201, 169, 97, 0.1);
+    color: var(--xym-gold);
+  }
+}
+
+/* 屏幕缺口适配 */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .app-header {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+}
+
+/* 底部手势条适配 (iPhone X+) */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .number-panel {
+    padding-bottom: max(30px, env(safe-area-inset-bottom));
+  }
+
+  .action-hints {
+    bottom: max(30px, env(safe-area-inset-bottom));
+  }
+
+  .save-btn {
+    bottom: max(30px, env(safe-area-inset-bottom));
+  }
+}

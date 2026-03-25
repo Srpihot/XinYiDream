@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>心易梦</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/meihua.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 启动动画 -->
+        <div id="splash" class="splash-screen">
+            <div class="taiji-container">
+                <div class="taiji"></div>
+            </div>
+            <h1 class="app-name">心易梦</h1>
+            <p class="app-subtitle">以心起卦 · 以易入梦</p>
+            <button class="continue-btn hidden" id="continue-btn">介入因果</button>
+        </div>
+
+        <!-- 主界面 -->
+        <main id="main-content" class="hidden">
+            <!-- 顶部状态栏 -->
+            <header class="app-header">
+                <button class="header-back-btn hidden" id="header-back-btn">←</button>
+                <div class="time-display" id="current-time">--:--</div>
+                <div class="lunar-display" id="lunar-date">--</div>
+            </header>
+
+            <!-- 起卦区域 -->
+            <section class="divination-area" id="divination-area">
+                <!-- 起卦方式指示器 -->
+                <div class="method-indicator">
+                    <span class="method-dot active" data-method="time"></span>
+                    <span class="method-dot" data-method="number"></span>
+                    <span class="method-dot" data-method="bazi"></span>
+                </div>
+
+                <!-- 主卦展示区 -->
+                <div class="gua-display" id="gua-display">
+                    <div class="gua-main" id="gua-main">
+                        <div class="gua-waiting">
+                            <p>轻触起卦</p>
+                            <p class="hint">或向上滑动切换方式</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作提示 -->
+                <div class="action-hints">
+                    <p id="action-hint">轻触起卦 · 长按保存</p>
+                </div>
+            </section>
+
+            <!-- 数字输入面板（默认隐藏） -->
+            <section class="number-panel hidden" id="number-panel">
+                <div class="number-inputs">
+                    <div class="input-group">
+                        <label>上卦数</label>
+                        <input type="number" id="upper-num" min="1" max="999" placeholder="1-999">
+                    </div>
+                    <div class="input-group">
+                        <label>下卦数</label>
+                        <input type="number" id="lower-num" min="1" max="999" placeholder="1-999">
+                    </div>
+                </div>
+                <button class="confirm-btn" id="confirm-number">确 定</button>
+            </section>
+
+            <!-- 八字批盘输入面板（默认隐藏） -->
+            <section class="bazi-panel hidden" id="bazi-panel">
+                <div class="bazi-inputs">
+                    <!-- 农历/阳历切换 -->
+                    <div class="calendar-toggle">
+                        <label class="toggle-option active" data-value="solar">
+                            <input type="radio" name="calendar-type" value="solar" checked>
+                            <span>阳历</span>
+                        </label>
+                        <label class="toggle-option" data-value="lunar">
+                            <input type="radio" name="calendar-type" value="lunar">
+                            <span>农历</span>
+                        </label>
+                    </div>
+
+                    <!-- 年份选择 -->
+                    <div class="input-group">
+                        <label>年份</label>
+                        <div class="custom-select" id="year-select">
+                            <div class="select-trigger">
+                                <span class="select-value">请选择年份</span>
+                                <span class="select-arrow">▼</span>
+                            </div>
+                            <div class="select-options">
+                                <div class="select-option" data-value="">请选择年份</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 月份选择 -->
+                    <div class="input-group">
+                        <label>月份</label>
+                        <div class="custom-select" id="month-select">
+                            <div class="select-trigger">
+                                <span class="select-value">请选择月份</span>
+                                <span class="select-arrow">▼</span>
+                            </div>
+                            <div class="select-options">
+                                <div class="select-option" data-value="">请选择月份</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 日子选择 -->
+                    <div class="input-group">
+                        <label>日子</label>
+                        <div class="custom-select" id="day-select">
+                            <div class="select-trigger">
+                                <span class="select-value">请选择日子</span>
+                                <span class="select-arrow">▼</span>
+                            </div>
+                            <div class="select-options">
+                                <div class="select-option" data-value="">请选择日子</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 时辰选择 -->
+                    <div class="input-group">
+                        <label>时辰</label>
+                        <div class="custom-select" id="hour-select">
+                            <div class="select-trigger">
+                                <span class="select-value">请选择时辰</span>
+                                <span class="select-arrow">▼</span>
+                            </div>
+                            <div class="select-options">
+                                <div class="select-option" data-value="">请选择时辰</div>
+                                <div class="select-option" data-value="0">子时 23:00-01:00</div>
+                                <div class="select-option" data-value="1">丑时 01:00-03:00</div>
+                                <div class="select-option" data-value="2">寅时 03:00-05:00</div>
+                                <div class="select-option" data-value="3">卯时 05:00-07:00</div>
+                                <div class="select-option" data-value="4">辰时 07:00-09:00</div>
+                                <div class="select-option" data-value="5">巳时 09:00-11:00</div>
+                                <div class="select-option" data-value="6">午时 11:00-13:00</div>
+                                <div class="select-option" data-value="7">未时 13:00-15:00</div>
+                                <div class="select-option" data-value="8">申时 15:00-17:00</div>
+                                <div class="select-option" data-value="9">酉时 17:00-19:00</div>
+                                <div class="select-option" data-value="10">戌时 19:00-21:00</div>
+                                <div class="select-option" data-value="11">亥时 21:00-23:00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 性别选择 -->
+                    <div class="input-group">
+                        <label>性别</label>
+                        <div class="gender-options">
+                            <label class="gender-option active" data-value="male">
+                                <input type="radio" name="gender" value="male" checked>
+                                <span>男</span>
+                            </label>
+                            <label class="gender-option" data-value="female">
+                                <input type="radio" name="gender" value="female">
+                                <span>女</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button class="confirm-btn" id="confirm-bazi">批 盘</button>
+            </section>
+
+            <!-- 八字批盘详情页（滑动进入） -->
+            <section class="bazi-detail hidden" id="bazi-detail">
+                <div class="detail-header">
+                    <button class="back-btn" id="bazi-back-btn">←</button>
+                    <h2 id="bazi-detail-title">八字命盘</h2>
+                </div>
+                <div class="detail-content" id="bazi-detail-content">
+                    <!-- 动态填充 -->
+                </div>
+                <!-- AI 问答栏 -->
+                <div class="ai-chat-bar" id="bazi-ai-chat-bar">
+                    <div class="ai-chat-input-area">
+                        <input type="text" id="bazi-ai-question" placeholder="问 AI 八字..." maxlength="200">
+                        <button id="bazi-ai-send-btn" class="ai-send-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 卦象详情页（滑动进入） -->
+            <section class="gua-detail hidden" id="gua-detail">
+                <div class="detail-header">
+                    <button class="back-btn" id="back-btn">←</button>
+                    <h2 id="detail-title">卦象详情</h2>
+                </div>
+                <div class="detail-content" id="detail-content">
+                    <!-- 动态填充 -->
+                </div>
+                <!-- AI 问答栏 -->
+                <div class="ai-chat-bar" id="ai-chat-bar">
+                    <div class="ai-chat-input-area">
+                        <input type="text" id="ai-question" placeholder="问问 AI ..." maxlength="200">
+                        <button id="ai-send-btn" class="ai-send-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 页脚 -->
+            <footer class="app-footer">
+                <p>本程序由 Srpihot 与 Kimi-cc 共同开发·All in AGI</p>
+            </footer>
+
+            <!-- 查看历史按钮 -->
+            <button class="view-history-btn" id="view-history-btn" title="查看历史">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </button>
+
+            <!-- 设置入口按钮 -->
+            <button class="settings-btn" id="settings-btn" title="设置">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 1v6m0 6v6m4.22-10.22l4.24-4.24M6.34 17.66l-4.24 4.24M23 12h-6m-6 0H1m20.07 4.93l-4.24-4.24M6.34 6.34L2.1 2.1"/>
+                </svg>
+            </button>
+
+            <!-- 聊天历史页面 -->
+            <section class="chat-history-page hidden" id="chat-history-page">
+                <div class="chat-history-header">
+                    <button class="back-btn" id="chat-history-back-btn">←</button>
+                    <h2>问答历史</h2>
+                </div>
+                <div class="chat-history-content">
+                    <div class="chat-list" id="chat-list">
+                        <!-- 动态填充 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 对话详情页面 -->
+            <section class="chat-detail-page hidden" id="chat-detail-page">
+                <div class="chat-history-header">
+                    <button class="back-btn" id="chat-detail-back-btn">←</button>
+                    <h2 id="chat-detail-title">对话详情</h2>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <!-- 动态填充 -->
+                </div>
+            </section>
+
+            <!-- AI 设置页面 -->
+            <section class="settings-page hidden" id="settings-page">
+                <div class="settings-header">
+                    <button class="back-btn" id="settings-back-btn">←</button>
+                    <h2>AI 设置</h2>
+                </div>
+                <div class="settings-content">
+                    <!-- 服务提供商选择 -->
+                    <div class="settings-section">
+                        <h3>AI 服务提供商</h3>
+                        <div class="provider-options">
+                            <label class="provider-option">
+                                <input type="radio" name="ai-provider" value="deepseek" checked>
+                                <div class="provider-card">
+                                    <div class="provider-name">DeepSeek</div>
+                                    <div class="provider-desc">默认推荐，专业中文大模型</div>
+                                </div>
+                            </label>
+                            <label class="provider-option">
+                                <input type="radio" name="ai-provider" value="custom">
+                                <div class="provider-card">
+                                    <div class="provider-name">自定义</div>
+                                    <div class="provider-desc">OpenAI 格式兼容 API</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- DeepSeek 配置 -->
+                    <div class="settings-section" id="deepseek-config">
+                        <h3>DeepSeek 配置</h3>
+                        <div class="input-group">
+                            <label>API Key</label>
+                            <input type="password" id="deepseek-apikey" placeholder="sk-xxxxxxxxxxxxxxxx">
+                            <span class="input-hint">在 DeepSeek 开放平台获取</span>
+                        </div>
+                        <div class="input-group">
+                            <label>模型选择</label>
+                            <div class="model-options">
+                                <label class="model-option">
+                                    <input type="radio" name="deepseek-model" value="deepseek-chat" checked>
+                                    <span class="model-name">DeepSeek-V3</span>
+                                    <span class="model-desc">通用对话模型</span>
+                                </label>
+                                <label class="model-option">
+                                    <input type="radio" name="deepseek-model" value="deepseek-reasoner">
+                                    <span class="model-name">DeepSeek-R1</span>
+                                    <span class="model-desc">推理模型（思维链展示）</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 自定义配置 -->
+                    <div class="settings-section hidden" id="custom-config">
+                        <h3>自定义 API 配置</h3>
+                        <div class="input-group">
+                            <label>Base URL</label>
+                            <input type="text" id="custom-baseurl" placeholder="https://api.example.com/v1">
+                            <span class="input-hint">OpenAI 格式 API 基础地址</span>
+                        </div>
+                        <div class="input-group">
+                            <label>API Key</label>
+                            <input type="password" id="custom-apikey" placeholder="sk-xxxxxxxxxxxxxxxx">
+                        </div>
+                        <div class="input-group">
+                            <label>模型名称</label>
+                            <input type="text" id="custom-model" placeholder="gpt-4 或自定义模型名">
+                        </div>
+                    </div>
+
+                    <!-- 保存按钮 -->
+                    <div class="settings-actions">
+                        <button class="settings-save-btn" id="settings-save-btn">保存设置</button>
+                        <button class="settings-test-btn" id="settings-test-btn">测试连接</button>
+                    </div>
+
+                    <!-- 使用说明 -->
+                    <div class="settings-note">
+                        <p>💡 不配置 API Key 也可以正常使用，解卦时会自动复制提示词到剪贴板，您可以粘贴到任意 AI 对话中使用。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 数据文件 -->
+    <script src="js/data/guadata.js"></script>
+    <!-- 八字数据文件 (从PHP转换的农历和节气数据) -->
+    <script src="js/data/bazi-data.js"></script>
+    <!-- FortuneAnalyzer (基于 php-fortune-analyzer 转换) -->
+    <script src="js/core/fortune-analyzer.js"></script>
+    <!-- 工具模块 -->
+    <script src="js/utils/date.js"></script>
+    <script src="js/utils/ui.js"></script>
+    <!-- 核心模块 -->
+    <script src="js/core/storage.js"></script>
+    <script src="js/core/meihua.js"></script>
+    <script src="js/core/app.js"></script>
+</body>
+</html>

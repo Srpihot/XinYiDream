@@ -1,0 +1,233 @@
+/* 可复用组件样式 */
+
+/* 起卦方式指示器 */
+.method-indicator {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.method-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--xym-gray);
+  transition: all var(--xym-transition-fast);
+}
+
+.method-dot.active {
+  width: 20px;
+  border-radius: 3px;
+  background: var(--xym-gold);
+}
+
+/* 起卦区域 */
+.divination-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* 卦象展示区 */
+.gua-display {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.gua-waiting {
+  text-align: center;
+  color: var(--xym-white-dim);
+}
+
+.gua-waiting p {
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+}
+
+.gua-waiting .hint {
+  font-size: 0.75rem;
+  margin-top: 10px;
+  opacity: 0.5;
+}
+
+/* 主卦卡片 - 滑动样式 */
+/* 注意：gua-carousel 的详细样式在 meihua.css 中定义 */
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 操作提示 */
+.action-hints {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.action-hints p {
+  font-size: 0.75rem;
+  color: var(--xym-white-dim);
+  letter-spacing: 0.15em;
+}
+
+/* 数字输入面板 */
+.number-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--xym-dark), var(--xym-black));
+  padding: 30px;
+  padding-bottom: calc(30px + var(--xym-safe-bottom));
+  border-radius: 25px 25px 0 0;
+  transform: translateY(0);
+  transition: transform var(--xym-transition-normal);
+}
+
+.number-panel.hidden {
+  transform: translateY(100%);
+}
+
+.number-inputs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  flex: 1;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--xym-light-gray);
+  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+}
+
+.input-group input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  border-radius: 12px;
+  padding: 15px;
+  color: var(--xym-white);
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: var(--xym-font-sans);
+  outline: none;
+  transition: all var(--xym-transition-fast);
+}
+
+.input-group input:focus {
+  border-color: var(--xym-gold);
+  background: rgba(201, 169, 97, 0.05);
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--xym-gold-dark), var(--xym-gold));
+  border: none;
+  border-radius: 12px;
+  color: var(--xym-black);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  cursor: pointer;
+  transition: all var(--xym-transition-fast);
+}
+
+.confirm-btn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* 详情页 */
+.gua-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--xym-black);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--xym-safe-top);
+}
+
+.detail-header {
+  height: var(--xym-header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--xym-gold);
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-left: -10px;
+  cursor: pointer;
+}
+
+.detail-header h2 {
+  flex: 1;
+  text-align: center;
+  font-family: var(--xym-font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--xym-white);
+  margin-right: 40px;
+}
+
+.detail-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-section {
+  margin-bottom: 25px;
+}
+
+.detail-section h3 {
+  font-family: var(--xym-font-serif);
+  font-size: 0.9rem;
+  color: var(--xym-gold);
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+}
+
+.detail-section p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--xym-white-dim);
+}

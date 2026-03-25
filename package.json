@@ -1,0 +1,20 @@
+{
+  "name": "xinyimeng",
+  "version": "1.0.0",
+  "description": "心易梦 - 梅花易数占卜应用",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step needed for static site'",
+    "sync": "npx cap sync",
+    "open:android": "npx cap open android",
+    "build:apk": "cd android && ./gradlew assembleDebug"
+  },
+  "keywords": ["meihua", "divination", "iching"],
+  "author": "Srpihot",
+  "license": "MIT",
+  "devDependencies": {
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0"
+  }
+}
