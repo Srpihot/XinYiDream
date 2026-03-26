@@ -78,11 +78,12 @@
 
 /* 操作提示 */
 .action-hints {
-  position: absolute;
-  bottom: max(30px, var(--xym-safe-bottom));
+  position: fixed;
+  bottom: calc(60px + env(safe-area-inset-bottom, 34px));
   left: 0;
   right: 0;
   text-align: center;
+  z-index: 50;
 }
 
 .action-hints p {
