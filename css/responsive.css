@@ -83,6 +83,51 @@
   .app-header {
     padding-top: 8px;
   }
+
+  /* iPhone 15 轮播字体大小调整 */
+  .gua-carousel {
+    --carousel-card-width: 200px !important;
+    --carousel-card-gap: 12px !important;
+  }
+
+  .gua-card-slide {
+    padding: 16px 12px;
+  }
+
+  .gua-card-slide .gua-title h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .gua-type-label {
+    font-size: 0.6rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .gua-card-slide .gua-visual {
+    margin: 10px 0 !important;
+    gap: 5px !important;
+  }
+
+  .gua-card-slide .yao {
+    height: 4px !important;
+    width: 55px !important;
+  }
+
+  .gua-card-slide .yao.yin::before,
+  .gua-card-slide .yao.yin::after {
+    height: 4px !important;
+  }
+
+  .gua-wuxing-info {
+    margin-top: 8px !important;
+    padding: 6px 10px !important;
+    font-size: 0.65rem !important;
+    gap: 12px !important;
+  }
+
+  .gua-carousel-dots {
+    margin-top: 12px !important;
+  }
 }
 
 /* iPhone 15 Pro Max / 16 Pro Max / 17 Pro Max */

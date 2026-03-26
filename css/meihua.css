@@ -661,12 +661,15 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   background: radial-gradient(ellipse at center, var(--xym-dark) 0%, var(--xym-black) 70%);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   padding-top: var(--xym-safe-top);
-  padding-bottom: calc(70px + var(--xym-safe-bottom));
+  padding-bottom: var(--xym-safe-bottom);
 }
 
 .gua-detail.hidden {
