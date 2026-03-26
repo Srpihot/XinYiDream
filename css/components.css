@@ -86,7 +86,8 @@
   font-size: 0.75rem;
   color: var(--xym-white-dim);
   letter-spacing: 0.15em;
-  line-height: 1.6;
+  line-height: 1.8;
+  margin: 4px 0;
 }
 
 /* 数字输入面板 */
