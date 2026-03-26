@@ -79,7 +79,7 @@
 /* 操作提示 */
 .action-hints {
   position: absolute;
-  bottom: 30px;
+  bottom: max(30px, var(--xym-safe-bottom));
   left: 0;
   right: 0;
   text-align: center;

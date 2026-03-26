@@ -51,9 +51,8 @@ body {
   color: var(--xym-white);
   min-height: 100vh;
   min-height: 100dvh;
-  overflow: hidden;
-  position: fixed;
   width: 100%;
+  overflow: hidden;
 }
 
 #app {
@@ -212,8 +211,6 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: var(--xym-safe-top);
-  padding-bottom: var(--xym-safe-bottom);
 }
 
 /* 顶部状态栏 */
@@ -223,7 +220,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
+  padding: var(--xym-safe-top) 20px 0;
   position: relative;
 }
 
@@ -263,7 +260,7 @@ body {
 
 /* 页脚 */
 .app-footer {
-  padding: 15px 20px;
+  padding: 15px 20px max(15px, var(--xym-safe-bottom));
   text-align: center;
   position: relative;
   z-index: 10;
