@@ -78,18 +78,15 @@
 
 /* 操作提示 */
 .action-hints {
-  position: fixed;
-  bottom: calc(60px + env(safe-area-inset-bottom, 34px));
-  left: 0;
-  right: 0;
   text-align: center;
-  z-index: 50;
+  margin-bottom: 12px;
 }
 
 .action-hints p {
   font-size: 0.75rem;
   color: var(--xym-white-dim);
   letter-spacing: 0.15em;
+  line-height: 1.6;
 }
 
 /* 数字输入面板 */

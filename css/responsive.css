@@ -599,10 +599,6 @@
     padding-bottom: max(30px, env(safe-area-inset-bottom));
   }
 
-  .action-hints {
-    bottom: max(30px, env(safe-area-inset-bottom));
-  }
-
   .save-btn {
     bottom: max(30px, env(safe-area-inset-bottom));
   }

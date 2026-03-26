@@ -406,7 +406,10 @@ const App = {
       this.state.isGenerating = false;
 
       // 更新提示文字
-      document.getElementById('action-hint').textContent = '长按保存 · 点击查看详情';
+      const hintLine1 = document.getElementById('action-hint-line1');
+      const hintLine2 = document.getElementById('action-hint-line2');
+      if (hintLine1) hintLine1.textContent = '长按保存';
+      if (hintLine2) hintLine2.textContent = '点击查看详情';
     }, 800);
   },
 
@@ -422,7 +425,10 @@ const App = {
     this.hideNumberPanel();
     this.state.isGenerating = false;
 
-    document.getElementById('action-hint').textContent = '长按保存 · 点击查看详情';
+    const hintLine1 = document.getElementById('action-hint-line1');
+    const hintLine2 = document.getElementById('action-hint-line2');
+    if (hintLine1) hintLine1.textContent = '长按保存';
+    if (hintLine2) hintLine2.textContent = '点击查看详情';
   },
 
   // 显示卦象
@@ -464,11 +470,14 @@ const App = {
 
     // 更新提示
     const hints = {
-      time: '轻触起卦 · 向上滑动切换方式',
-      number: '轻触输入数字 · 向上滑动切换',
-      bazi: '轻触输入八字 · 向上滑动切换'
+      time: { line1: '轻触起卦', line2: '向上滑动切换方式' },
+      number: { line1: '轻触输入数字', line2: '向上滑动切换' },
+      bazi: { line1: '轻触输入八字', line2: '向上滑动切换' }
     };
-    document.getElementById('action-hint').textContent = hints[this.state.currentMethod];
+    const hintLine1 = document.getElementById('action-hint-line1');
+    const hintLine2 = document.getElementById('action-hint-line2');
+    if (hintLine1) hintLine1.textContent = hints[this.state.currentMethod].line1;
+    if (hintLine2) hintLine2.textContent = hints[this.state.currentMethod].line2;
 
     // 重置卦象显示
     if (this.state.currentMethod === 'time') {
@@ -554,7 +563,10 @@ const App = {
     `;
 
     // 重置提示文字
-    document.getElementById('action-hint').textContent = '轻触起卦 · 向上滑动切换方式';
+    const hintLine1 = document.getElementById('action-hint-line1');
+    const hintLine2 = document.getElementById('action-hint-line2');
+    if (hintLine1) hintLine1.textContent = '轻触起卦';
+    if (hintLine2) hintLine2.textContent = '向上滑动切换方式';
 
     // 隐藏顶部返回键
     const headerBackBtn = document.getElementById('header-back-btn');
@@ -1940,7 +1952,10 @@ const App = {
     `;
 
     // 重置提示文字
-    document.getElementById('action-hint').textContent = '轻触起卦 · 向上滑动切换方式';
+    const hintLine1 = document.getElementById('action-hint-line1');
+    const hintLine2 = document.getElementById('action-hint-line2');
+    if (hintLine1) hintLine1.textContent = '轻触起卦';
+    if (hintLine2) hintLine2.textContent = '向上滑动切换方式';
 
     // 隐藏顶部返回键
     const headerBackBtn = document.getElementById('header-back-btn');

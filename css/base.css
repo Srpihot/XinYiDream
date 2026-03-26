@@ -260,15 +260,16 @@ body {
 
 /* 页脚 */
 .app-footer {
-  padding: 15px 20px max(15px, var(--xym-safe-bottom));
+  padding: 10px 20px max(10px, env(safe-area-inset-bottom, 34px));
   text-align: center;
   position: relative;
   z-index: 10;
 }
 
-.app-footer p {
+.footer-credit {
   font-size: 0.65rem;
   color: var(--xym-light-gray);
   letter-spacing: 0.1em;
   opacity: 0.6;
+  margin-top: 8px;
 }
